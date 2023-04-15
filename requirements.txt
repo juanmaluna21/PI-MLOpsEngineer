@@ -1,0 +1,4 @@
+fastapi==0.91.0
+gunicorn==20.1.0
+pandas==1.3.5
+uvicorn==0.20.0
