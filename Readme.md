@@ -29,6 +29,7 @@ Original platform datasets are saved in a drive in a drive on this [link](https:
 
 ## **Data treatment:**
 [etl_mainfile.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_mainfile.py)
+
 [etl_support.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/transformation%20-%20support%20notebook.ipynb)
 
 In order to better structure the information in the data, we proceeded to:
@@ -81,6 +82,7 @@ The deployment was carried out through Render at the following link, with the pr
 
 ## **Exploratory Data Analysis:**
 [eda_mainfile.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/eda_mainfile.ipynb)
+
 To obtain a first global overview of the datasets' structure, functions such as `.shape, .dtype, .describe, .info, and .head` were used. In order to observe a little more in detail, a `box plot` diagram was graphed, where several outliers were found in the "duration_int" column. Finally, to complement this analysis, the `ProfileReport` tool from `pandas_profiling` library was used, where it was possible to observe that there are no duplicate values. The platform "Hulu" contains the most null values, some columns such as "cast" do not contain any values. Additionally, it was observed that the movie with the lowest score was "filth" with a score of 0.5.
 
 <br/>
