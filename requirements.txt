@@ -2,4 +2,3 @@ fastapi
 gunicorn
 pandas
 uvicorn
-scikit-learn

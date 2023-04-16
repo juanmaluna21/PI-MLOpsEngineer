@@ -31,7 +31,7 @@ Original platform datasets are saved in a drive in a drive on this [link](https:
 ## **Data treatment:**
 [etl_mainfile.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_mainfile.py)
 
-[etl_support.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/transformation%20-%20support%20notebook.ipynb)
+[etl_support.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_support.ipynb)
 
 In order to better structure the information in the data, we proceeded to:
 
@@ -39,7 +39,7 @@ For files of each platform (found in the 'datasets' folder): Amazon, Disney, Hul
 
 + A new id field was generated: Each new **`id`** is composed of the first letter of the platform name, followed by the show_id already present in the datasets (example for Amazon titles = **`as123`**).
 
-+ Null values in the rating field were replaced with the string “**`G`**” ('general for all audiences').
++ Null values in the 'rating' field were replaced with the string “**`G`**” ('general for all audiences').
 
 + The format of the 'date_added' column was changed to **`YYYY-mm-dd`**.
 
