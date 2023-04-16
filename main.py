@@ -49,10 +49,13 @@ async def get_count_platform(platform:str):
 async def get_actor(platform:str, year:int):
     by_actor = df_platform.loc[(df_platform['platform'] == platform) & (df_platform['release_year'] == year), 'cast']
     all_actors = [actor.strip() for cast_list in by_actor.str.split(',') if isinstance(cast_list, list) for actor in cast_list]
-    # Obtiene el actor más común y su frecuencia
-    most_common_actor = max(set(all_actors), key = all_actors.count)
-    frequency = all_actors.count(most_common_actor)
-    return {'platform':platform, "year":year,'actor':most_common_actor,'times':frequency}
+    if not all_actors: #If the column is empty
+        return {'platform':platform, "year":year,'actor':'no information','times':0}
+    else:
+        #Most common actor and frequence
+        most_common_actor = max(set(all_actors), key = all_actors.count)
+        frequency = all_actors.count(most_common_actor)
+        return {'platform':platform, "year":year,'actor':most_common_actor,'times':frequency}
 
 #5) Number of content/products (everything available on streaming) that was published per country and year
 @app.get('/prod_per_country/{type}/{country}/{year}')

@@ -8,193 +8,89 @@
 <img src="https://user-images.githubusercontent.com/67664604/217914153-1eb00e25-ac08-4dfa-aaf8-53c09038f082.png"  height=300>
 </p>
 
-¡Bienvenidos a este primer proyecto individual! En esta ocasión me sitúo en el rol de un ***MLOps Engineer***.  
+Welcome to this first individual project! On this occasion, I take on the role of a ***MLOps Engineer***.  
 
 <hr>  
 
 ## **Main files used:**
 
 1) main.py
-2) transformation.py
-3) support notebook
+2) etl_mainfile.py
+3) etl_support.ipynb
+4) eda_mainfile
+5) Recommendation_system
 
 ## **Context**
 
-EL cliente pidió nos entregó varios datasets, con el obejtivo que los tratáramos y finalmente hagamos un sitema de recomendación.
+The client requested and delivered several datasets to us, with the objective that we process them and create a recommendation system.
+Original rating datasets are saved in a drive in a drive on this [link](https://drive.google.com/drive/folders/1MPv6HkTOC9_nOIazZ-gVTQhJgWUni97a?usp=share_link)
+Original platform datasets are saved in a drive in a drive on this [link](https://drive.google.com/drive/folders/1GcvjWP-P--1D_ihVA6oR8VNI4DX_lGNd?usp=share_link)
 
-## **Tratamiento de los datos:**
 
-Con el fin de estructurar mejor la información de los datos se procedió a:
+## **Data treatment:**
+[etl_mainfile.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_mainfile.py)
+[etl_support.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/transformation%20-%20support%20notebook.ipynb)
 
-Para los archivos de cada plataforma(se encuentran en la carpeta "datasets": Amazon, Disney, Hulu y Netflix):
+In order to better structure the information in the data, we proceeded to:
 
-+ Se generó un campo **`id`**: Cada nuevo id se compone de la primera letra del nombre de la plataforma, seguido del show_id ya presente en los datasets (ejemplo para títulos de Amazon = **`as123`**).
+For files of each platform (found in the 'datasets' folder): Amazon, Disney, Hulu, and Netflix.
 
-+ Los valores nulos del campo rating se reemplazaron por el string “**`G`**” ( “general for all audiences”).
++ A new id field was generated: Each new **`id`** is composed of the first letter of the platform name, followed by the show_id already present in the datasets (example for Amazon titles = **`as123`**).
 
-+ Se cambió el formato de la columna "date_added" a **`AAAA-mm-dd`**.
++ Null values in the rating field were replaced with the string “**`G`**” ('general for all audiences').
 
-+ Todos los campos fueron pasados **minúsculas**, sin excepciones.
++ The format of the 'date_added' column was changed to **`YYYY-mm-dd`**.
 
-+ Se dividió el campo ***duration*** en dos: **`duration_int`** y **`duration_type`**. El primero campo a un **`int`** y el segundo a un **`string`** indicando la unidad de medición de duración: min (minutos) o season (temporadas), los cuales pasaron a ser todos los registros de este ultimo campo en singular con el fin de facilitar la búsqueda.
++ "All fields were converted to **lowercase**, no exceptions.
 
-+ Se agregó una columna "platform" con el fin de facilitar el armado de la API y las queries.
++ "Duration" field was divided into two: **`duration_int`** and **`duration_type`**. The first field is an **`int`** and the second is a **`string`** indicating the duration unit of measurement: min (minutes) or season (seasons), which were all changed to singular form in order to facilitate search.
 
-Para los archivos de los ratings (desde el 1 al 8):
-+ Se les agrego una nueva columna que indican a que plataforma pertenece cada id de la columna "movieId".
++ A 'platform' column was added in order to facilitate the construction of the API and queries.
 
-+ Se concatenaron los 8 datasets en uno solo y exportó, para despues poder cargarlo y subirlo GitHub, dado que, debido al tamaño de los datasets, no se me permitía hacer el deployment desde Render.
+For rating files (from 1 to 8):
++ A new column was added to indicate which platform each ID in the 'movieId' column belongs to.
+
++ The 8 datasets were concatenated into a single one and exported, so that it could later be uploaded to GitHub after being loaded, since, due to the size of the datasets, it was not possible to deploy on Render.
 
 <br/>
 
-## **Desarrollo API:**
+## **API Development:**
+[main.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/main.py)
 
-Ya con los datasets transformados, se los disponibilizó para el cliente a través de una API, construida con la librería ***FastAPI***, con diferentes queries para el usuario:
+With the transformed datasets, they were made available to the client through an API built with ***FastAPI*** library, featuring various queries for the user:
 
-+ Película (sólo película, no serie, etc) con mayor duración según año, plataforma y tipo de duración.
-Nombre de la función: `get_max_duration(year, platform, duration_type)`. Devuelve el nombre de la película.
++ Movie (not TV series, etc.) with the longest duration by year, platform, and duration type. Function name: `get_max_duration(year, platform, duration_type)`. Returns the name of the movie
 
-+ Cantidad de películas (sólo películas, no series, etc) según plataforma, con un puntaje mayor a XX en determinado año.
-Nombre de la función: `get_score_count(platform, scored, year)`. Devuelve un int, con el total de películas que cumplen lo solicitado.
++ Number of movies (not TV series, etc.) by platform, with a score higher than XX in a given year. Function name: `get_score_count(platform, scored, year)`. Returns an 'int', with the total number of movies that meet the requested criteria.
 
-+ Cantidad de películas (sólo películas, no series, etc) según plataforma.
-Nombre de la función: `get_count_platform(platform)`. Devuelve un int, con el número total de películas de esa plataforma. Las plataformas se llaman: amazon, netflix, hulu, disney.
++ Number of movies (not TV series, etc.) by platform. Function name: `get_count_platform(platform)`. Returns an int, with the total number of movies for that platform. The platforms are named: Amazon, Netflix, Hulu, and Disney.
 
-+ Actor que más se repite según plataforma y año.
-Nombre de la función: `get_actor(platform, year)`. Devuelve el nombre del actor que más se repite según la plataforma y el año dado.
++ Actor who appears most frequently by platform and year. Function name: `get_actor(platform, year)`. Returns the name of the actor who appears most frequently according to the given platform and year.
 
-+ La cantidad de contenidos/productos (todo lo disponible en streaming) que se publicó por país y año.
-Nombre de la función: `prod_per_country(tipo,pais,anio)`. Devuelve el tipo de contenido (pelicula,serie) por pais y año en un diccionario con las variables llamadas 'pais' (nombre del pais), 'anio' (año), 'pelicula' (cantidad de películas).
++ The number of contents/products (all available streaming content) released by country and year. Function name: `prod_per_country(content_type, country, year)`. It returns the number of the specified content type (movie, series) per country and year in a dictionary with the variables 'country' (country name), 'year' (year), 'movie' (number of movies).
 
-+ La cantidad total de contenidos/productos (todo lo disponible en streaming, series, peliculas, etc) según el rating de audiencia dado (para que publico fue clasificada la pelicula).
-Nombre de la función: `get_contents(rating)`. Devuelve el numero total de contenido con ese rating de audiencias.
++ Number of content/products (everything available for streaming, series, movies, etc) according to the given audience rating (for which audience the content was classified). Function name: `get_contents(rating)`. It returns the total number of contents with that audience rating.
 
+<br/>
 
 ## **Deployment:**
-El deployment fue realizado a través de Render en el siguiente link, con el nombre del proyecto: [PI-MLOpsEngineer](https://pi-mlopsengineer.onrender.com/docs#/).
+The deployment was carried out through Render at the following link, with the project name: [PI-MLOpsEngineer](https://pi-mlopsengineer.onrender.com/docs#/).
 
 
 <br/>
 
 ## **Exploratory Data Analysis:**
+[eda_mainfile.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/eda_mainfile.ipynb)
+To obtain a first global overview of the datasets' structure, functions such as `.shape, .dtype, .describe, .info, and .head` were used. In order to observe a little more in detail, a `box plot` diagram was graphed, where several outliers were found in the "duration_int" column. Finally, to complement this analysis, the `ProfileReport` tool from `pandas_profiling` library was used, where it was possible to observe that there are no duplicate values. The platform "Hulu" contains the most null values, some columns such as "cast" do not contain any values. Additionally, it was observed that the movie with the lowest score was "filth" with a score of 0.5.
 
 <br/>
 
 
 
 ## **Recommendation system:**
+[Recommendation_system.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/Recommendation_system.ipynb)
 
-Par el sistema de recomendación se utilizó el modelo "Cosine Similarity"
-
-<br/>
-
-
-
-
-
-
-
-<p align="center">
-<img src="https://github.com/HX-PRomero/PI_ML_OPS/raw/main/src/DiagramaConceptualDelFlujoDeProcesos.png"  height=500>
-</p>
-
-<sub> Nota que aqui se reflejan procesos no herramientas tecnologicas. Has el ejercicio de entender cual herramienta del stack corresponde a cual parte del proceso<sub/>
-
-## **Propuesta de trabajo (requerimientos de aprobación)**
-
-**`Transformaciones`**:  Para este MVP no necesitas perfección, ¡necesitas rapidez! ⏩ Vas a hacer estas, ***y solo estas***, transformaciones a los datos:
-
-
-+ Generar campo **`id`**: Cada id se compondrá de la primera letra del nombre de la plataforma, seguido del show_id ya presente en los datasets (ejemplo para títulos de Amazon = **`as123`**)
-
-+ Los valores nulos del campo rating deberán reemplazarse por el string “**`G`**” (corresponde al maturity rating: “general for all audiences”
-
-+ De haber fechas, deberán tener el formato **`AAAA-mm-dd`**
-
-+ Los campos de texto deberán estar en **minúsculas**, sin excepciones
-
-+ El campo ***duration*** debe convertirse en dos campos: **`duration_int`** y **`duration_type`**. El primero será un integer y el segundo un string indicando la unidad de medición de duración: min (minutos) o season (temporadas)
+"Cosine Similarity" model was used for the recommendation system. The name of the function can be found on the same API interface as a seventh query, called `get_recomendation(title)`, where you enter the title of a movie and it returns a list of 5 recommended movies based on that input title.
+(After processing the information and running the model, a .pickle file was printed as [similarity_matrix.pickle](https://drive.google.com/file/d/1gIPsPKwgEdCEO-iqo_XdATjEKX6f9-QS/view?usp=share_link), which is stored on a drive, as it was not possible to load it on GitHub due to its size.)
 
 <br/>
-
-**`Desarrollo API`**:   Propones disponibilizar los datos de la empresa usando el framework ***FastAPI***, generando diferentes endpoints que se consumiran en la API.
-
-Creas 6 funciones (recuerda que deben tener un decorador por cada una (@app.get(‘/’)):
-
-+ Película (sólo película, no serie, etc) con mayor duración según año, plataforma y tipo de duración. La función debe llamarse get_max_duration(year, platform, duration_type) y debe devolver sólo el string del nombre de la película.
-+ Cantidad de películas (sólo películas, no series, etc) según plataforma, con un puntaje mayor a XX en determinado año. La función debe llamarse get_score_count(platform, scored, year) y debe devolver un int, con el total de películas que cumplen lo solicitado.
-
-+ Cantidad de películas (sólo películas, no series, etc) según plataforma. La función debe llamarse get_count_platform(platform) y debe devolver un int, con el número total de películas de esa plataforma. Las plataformas deben llamarse amazon, netflix, hulu, disney.
-
-+ Actor que más se repite según plataforma y año. La función debe llamarse get_actor(platform, year) y debe devolver sólo el string con el nombre del actor que más se repite según la plataforma y el año dado.
-
-+ La cantidad de contenidos/productos (todo lo disponible en streaming) que se publicó por país y año. La función debe llamarse prod_per_county(tipo,pais,anio) deberia devolver el tipo de contenido (pelicula,serie) por pais y año en un diccionario con las variables llamadas 'pais' (nombre del pais), 'anio' (año), 'pelicula' (tipo de contenido).
-
-+ La cantidad total de contenidos/productos (todo lo disponible en streaming, series, peliculas, etc) según el rating de audiencia dado (para que publico fue clasificada la pelicula). La función debe llamarse get_contents(rating) y debe devolver el numero total de contenido con ese rating de audiencias.
-
-
-
-<br/>
-
-
-**`Deployment`**: Conoces sobre [Render](https://render.com/docs/free#free-web-services) y tienes un [tutorial de Render](https://github.com/HX-FNegrete/render-fastapi-tutorial) que te hace la vida mas facil :smile: . Tambien podrias usar [Railway](https://railway.app/), pero ten en cuenta que con este si necesitas dockerizacion.
-
-<br/>
-
-**`Análisis exploratorio de los datos`**: _(Exploratory Data Analysis-EDA)_
-
-Ya los datos están limpios, ahora es tiempo de investigar las relaciones que hay entre las variables de los datasets, ver si hay outliers o anomalías (que no tienen que ser errores necesariamente :eyes: ), y ver si hay algún patrón interesante que valga la pena explorar en un análisis posterior.  Sabes que puedes apoyarte en librerías como _pandas profiling, sweetviz, autoviz_, entre otros y sacar de allí tus conclusiones 😉
-
-**`Sistema de recomendación`**: 
-
-Una vez que toda la data es consumible por la API, está lista para consumir por los departamentos de Analytics y Machine Learning, y nuestro EDA nos permite entender bien los datos a los que tenemos acceso, es hora de entrenar nuestro modelo de machine learning para armar un sistema de recomendación de películas. Éste consiste en recomendar películas a los usuarios basándose en películas similares, por lo que se debe encontrar la similitud de puntuación entre esa película y el resto de películas, se ordenarán según el score y devolverá una lista de Python con 5 valores, cada uno siendo el string del nombre de las películas con mayor puntaje, en orden descendente. Debe ser deployado como una función adicional de la API anterior y debe llamarse get_recommendation(titulo: str).
-
-<br/>
-
-**`Video`**: Necesitas que al equipo le quede claro que tus herramientas funcionan realmente! Haces un video mostrando el resultado de las consultas propuestas y de tu modelo de ML entrenado!
-
-<sub> **Spoiler**: El video NO DEBE durar mas de ***7 minutos*** y DEBE mostrar las consultas requeridas en funcionamiento desde la API** y una breve explicacion del modelo entrenado para el sistema de recomendacion. <sub/>
-
-<br/>
-
-## **Criterios de evaluación**
-
-**`Código`**: Prolijidad de código, uso de clases y/o funciones, en caso de ser necesario, código comentado. 
-
-**`Repositorio`**: Nombres de archivo adecuados, uso de carpetas para ordenar los archivos, README.md presentando el proyecto y el trabajo realizado
-
-**`Cumplimiento`** de los requerimientos de aprobación indicados en el apartado `Propuesta de trabajo`
-
-NOTA: Recuerde entregar el link de acceso al video. Puede alojarse en YouTube, Drive o cualquier plataforma de almacenamiento. **Verificar que sea de acceso público**.
-
-<br/>
-Aqui te sintetizamos que es lo que consideramos un MVP aprobatorio, y la diferencia con un producto completo.
-
-
-
-<p align="center">
-<img src="https://github.com/HX-PRomero/PI_ML_OPS/raw/main/src/MVP_MLops.PNG"  height=250>
-</p>
-
-
-## **Fuente de datos**
-
-+ [Dataset](https://drive.google.com/drive/folders/1b49OVFJpjPPA1noRBBi1hSmMThXmNzxn): La carpeta 'ratings' tiene varios archivos con las reseñas de los usuarios, la carpeta raíz tiene un dataset por proveedor de servicios de streaming.
-<br/>
-
-## **Material de apoyo**
-
-En este mismo repositorio podras encontrar algunos [links de ayuda](hhttps://github.com/HX-PRomero/PI_ML_OPS/raw/main/Material%20de%20apoyo.md). Recuerda que no son los unicos recursos que puedes utilizar!
-
-
-
-  
-<br/>
-
-## **Deadlines importantes**
-
-+ Apertura de formularios de entrega de proyectos: **Lunes 17, 10:00 hs gmt -3**
-
-+ Cierre de formularios de entrega de proyectos: **Martes 18, 16:00hs gmt-3**
-  
-+ Demo: **Martes 18, 16:00hs gmt-3** 
