@@ -1,7 +1,7 @@
 import pandas as pd
 from fastapi import FastAPI
 import etl_mainfile as etl
-#import recomendation_system as rs
+import recomendation_system as rs
 
 #API tittle and description
 app = FastAPI(title= 'Movies and Series database',
@@ -19,7 +19,7 @@ async def about():
 #Datasets load
 df_platform= etl.df_platform
 df_ratings= etl.df_ratings
-#similarity_matrix= rs.similarity_matrix
+similarity_matrix= rs.similarity_matrix
 
 
 #QUERIES
