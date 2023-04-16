@@ -66,15 +66,15 @@ async def prod_per_country(type:str,country:str,year:int):
 async def get_contents(rating:str):
     return {'rating':rating,'content':len(df_platform[(df_platform['rating']==rating)])}
 
-# #7) Sistema de recomendación:
-# @app.get('/get_recomendation/{title}')
-# async def get_recomendation(title:str):
-#     #Obtain movie index
-#     idx = df_platform[df_platform['title'] == title].index[0]
-#     #Obtain similar movies related to "title"
-#     similar_movies = list(enumerate(similarity_matrix[idx]))
-#     #Order movies by cosine similarity
-#     similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
-#     #5 similiar movies
-#     top_movies = [df_platform.iloc[i[0]].title for i in similar_movies[1:6]]
-#     return {'recomeendation':top_movies}
+#7) Sistema de recomendación:
+@app.get('/get_recomendation/{title}')
+async def get_recomendation(title:str):
+    #Obtain movie index
+    idx = df_platform[df_platform['title'] == title].index[0]
+    #Obtain similar movies related to "title"
+    similar_movies = list(enumerate(similarity_matrix[idx]))
+    #Order movies by cosine similarity
+    similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
+    #5 similiar movies
+    top_movies = [df_platform.iloc[i[0]].title for i in similar_movies[1:6]]
+    return {'recomeendation':top_movies}
