@@ -1,7 +1,8 @@
 import pandas as pd
-import etl_mainfile as etl
-import pickle
 from fastapi import FastAPI
+import etl_mainfile as etl
+import recomendation_system as rs
+#import pickle
 
 #Tittle and description of the API
 app = FastAPI(title= 'Movies and Series database',
@@ -19,9 +20,10 @@ async def about():
 #datasets load
 df_platform= etl.df_platform
 df_ratings= etl.df_ratings
+similarity_matrix= rs.similarity_matrix
 
-with open('similarity_matrix.pickle', 'rb') as f:
-    similarity_matrix = pickle.load(f)
+#with open('similarity_matrix.pickle', 'rb') as f:
+    #similarity_matrix = pickle.load(f)
 
 
 #QUERIES
