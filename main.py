@@ -1,12 +1,13 @@
+import pandas as pd
 from fastapi import FastAPI
 import etl_mainfile as etl
-import recomendation_system as rs
+#import recomendation_system as rs
 
-#Tittle and description of the API
+#API tittle and description
 app = FastAPI(title= 'Movies and Series database',
               description= 'Through this API you can find the movies/series of the following platforms: Amazon, Disney Plus, Hulu and Netflix')
 
-# welcome
+#Welcome
 @app.get('/')
 async def index():
     return {"Welcome!!!"}
@@ -15,10 +16,10 @@ async def index():
 async def about():
     return 'Soy Henry first Individual Project'
 
-#datasets load
+#Datasets load
 df_platform= etl.df_platform
 df_ratings= etl.df_ratings
-similarity_matrix= rs.similarity_matrix
+#similarity_matrix= rs.similarity_matrix
 
 
 #QUERIES
@@ -65,15 +66,15 @@ async def prod_per_country(type:str,country:str,year:int):
 async def get_contents(rating:str):
     return {'rating':rating,'content':len(df_platform[(df_platform['rating']==rating)])}
 
-#7) Sistema de recomendación:
-@app.get('/get_recomendation/{title}')
-async def get_recomendation(title:str):
-    #Obtain movie index
-    idx = df_platform[df_platform['title'] == title].index[0]
-    #Obtain similar movies related to "title"
-    similar_movies = list(enumerate(similarity_matrix[idx]))
-    #Order movies by cosine similarity
-    similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
-    #5 similiar movies
-    top_movies = [df_platform.iloc[i[0]].title for i in similar_movies[1:6]]
-    return {'recomeendation':top_movies}
+# #7) Sistema de recomendación:
+# @app.get('/get_recomendation/{title}')
+# async def get_recomendation(title:str):
+#     #Obtain movie index
+#     idx = df_platform[df_platform['title'] == title].index[0]
+#     #Obtain similar movies related to "title"
+#     similar_movies = list(enumerate(similarity_matrix[idx]))
+#     #Order movies by cosine similarity
+#     similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
+#     #5 similiar movies
+#     top_movies = [df_platform.iloc[i[0]].title for i in similar_movies[1:6]]
+#     return {'recomeendation':top_movies}
