@@ -22,7 +22,9 @@ Welcome to this first individual project! On this occasion, I take on the role o
 ## **Context**
 
 The client requested and delivered several datasets to us, with the objective that we process them and create a recommendation system.
+
 Original rating datasets are saved in a drive in a drive on this [link](https://drive.google.com/drive/folders/1MPv6HkTOC9_nOIazZ-gVTQhJgWUni97a?usp=share_link)
+
 Original platform datasets are saved in a drive in a drive on this [link](https://drive.google.com/drive/folders/1GcvjWP-P--1D_ihVA6oR8VNI4DX_lGNd?usp=share_link)
 
 
