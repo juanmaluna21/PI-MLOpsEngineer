@@ -27,6 +27,7 @@ Original rating datasets are saved in a drive in a drive on this [link](https://
 
 Original platform datasets are saved in a drive in a drive on this [link](https://drive.google.com/drive/folders/1GcvjWP-P--1D_ihVA6oR8VNI4DX_lGNd?usp=share_link)
 
+<br/>
 
 ## **Data treatment:**
 [etl_mainfile.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_mainfile.py)
@@ -78,7 +79,6 @@ With the transformed datasets, they were made available to the client through an
 ## **Deployment:**
 The deployment was carried out through Render at the following link, with the project name: [PI-MLOpsEngineer](https://pi-mlopsengineer.onrender.com/docs#/).
 
-
 <br/>
 
 ## **Exploratory Data Analysis:**
@@ -88,8 +88,6 @@ To obtain a first global overview of the datasets' structure, functions such as 
 
 <br/>
 
-
-
 ## **Recommendation system:**
 [Recommendation_system.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/Recommendation_system.ipynb)
 
@@ -97,3 +95,6 @@ To obtain a first global overview of the datasets' structure, functions such as 
 (After processing the information and running the model, a .pickle file was printed as [similarity_matrix.pickle](https://drive.google.com/file/d/1gIPsPKwgEdCEO-iqo_XdATjEKX6f9-QS/view?usp=share_link), which is stored on a drive, as it was not possible to load it on GitHub due to its size.)
 
 <br/>
+
+## **Video explanation:**
+[link]
