@@ -1,8 +1,6 @@
-import pandas as pd
 from fastapi import FastAPI
 import etl_mainfile as etl
 import recomendation_system as rs
-#import pickle
 
 #Tittle and description of the API
 app = FastAPI(title= 'Movies and Series database',
