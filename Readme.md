@@ -14,11 +14,10 @@ Welcome to this first individual project! On this occasion, I take on the role o
 
 ## **Main files used:**
 
-1) main.py
-2) etl_mainfile.py
-3) etl_support.ipynb
-4) eda_mainfile
-5) Recommendation_system
+<p align="left">
+<img src="https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/Screen%20Shot%202023-04-16%20at%2001.29.11.png"  height=300>
+</p>
+
 
 ## **Context**
 
