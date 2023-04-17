@@ -15,18 +15,17 @@ def transformation(df, word, platform):
     df['platform']= platform #Column added to filter
     return df
 
-#Import of Dataframes
+#Import of Datasets
 df_amazon= pd.read_csv(r'datasets/amazon_prime_titles.csv')
 df_disney= pd.read_csv(r'datasets/disney_plus_titles.csv')
 df_hulu= pd.read_csv(r'datasets/hulu_titles.csv')
 df_netflix= pd.read_csv(r'datasets/netflix_titles.csv')
-df_ratings= pd.read_csv(r'dataset_ratings.csv',index_col='movieId')
 
-#Transformation of the Dataframes
+#Transformation of the Datasets
 df_amazon= transformation(df_amazon,'a','amazon')
 df_disney= transformation(df_disney,'d','disney')
 df_hulu= transformation(df_hulu,'h','hulu')
 df_netflix= transformation(df_netflix,'n','netflix')
 
-#Concatenate all the datasets
+#Concatenate all the platforom datasets
 df_platform= pd.concat([df_amazon,df_disney,df_hulu,df_netflix], axis=0)

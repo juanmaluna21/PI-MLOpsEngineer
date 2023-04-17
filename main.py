@@ -1,7 +1,7 @@
 import pandas as pd
 from fastapi import FastAPI
 import etl_mainfile as etl
-import recomendation_system as rs
+import pickle
 
 #API tittle and description
 app = FastAPI(title= 'Movies and Series database',
@@ -18,8 +18,10 @@ async def about():
 
 #Datasets load
 df_platform= etl.df_platform
-df_ratings= etl.df_ratings
-similarity_matrix= rs.similarity_matrix
+df_ratings= pd.read_csv(r'dataset_ratings.csv',index_col='movieId')
+with open('similarity_matrix.pickle', 'rb') as f:
+    similarity_matrix = pickle.load(f)
+
 
 
 #QUERIES
@@ -67,8 +69,8 @@ async def get_contents(rating:str):
     return {'rating':rating,'content':len(df_platform[(df_platform['rating']==rating)])}
 
 #7) Sistema de recomendación:
-@app.get('/get_recomendation/{title}')
-async def get_recomendation(title:str):
+@app.get('/get_recommendation/{title}')
+async def get_recommendation(title:str):
     #Obtain movie index
     idx = df_platform[df_platform['title'] == title].index[0]
     #Obtain similar movies related to "title"
@@ -77,4 +79,4 @@ async def get_recomendation(title:str):
     similar_movies = sorted(similar_movies, key=lambda x: x[1], reverse=True)
     #5 similiar movies
     top_movies = [df_platform.iloc[i[0]].title for i in similar_movies[1:6]]
-    return {'recomeendation':top_movies}
+    return {'recommendation':top_movies}
