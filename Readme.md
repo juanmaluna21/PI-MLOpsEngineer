@@ -25,7 +25,7 @@ Original platform datasets are saved in a drive in a drive on this [link](https:
 ## **Main files used:**
 
 <p align="left">
-<img src="https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/Screen%20Shot%202023-04-16%20at%2002.16.22.png"  height=300>
+<img src="https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/Screen%20Shot%202023-04-16%20at%2022.49.46.png"  height=300>
 </p>
 
 ## **Data treatment:**
