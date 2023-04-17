@@ -31,7 +31,7 @@ Original platform datasets are saved in a drive in a drive on this [link](https:
 ## **Data treatment:**
 [etl_mainfile.py](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_mainfile.py)
 
-[etl_support.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl_support.ipynb)
+[etl(support).ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/etl(support).ipynb)
 
 In order to better structure the information in the data, we proceeded to:
 
@@ -53,6 +53,8 @@ For rating files (from 1 to 8):
 + A new column was added to indicate which platform each ID in the 'movieId' column belongs to.
 
 + The 8 datasets were concatenated into a single one and exported, so that it could later be uploaded to GitHub after being loaded, since, due to the size of the datasets, it was not possible to deploy on Render.
+
++ The concatenated csv has been saved in a drive as [dataset_ratings.csv](https://drive.google.com/file/d/1tBQj2LUmMz6bTurNrZl_hhCsX0VTZP5o/view?usp=share_link)
 
 <br/>
 
@@ -88,7 +90,9 @@ To obtain a first global overview of the datasets' structure, functions such as 
 <br/>
 
 ## **Recommendation system:**
-[Recommendation_system.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/Recommendation_system.ipynb)
+[recommendation_system(support).ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recommendation_system(support).ipynb)
+
+[recommendation_system](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recomendation_system.py)
 
 "Cosine Similarity" model was used for the recommendation system. The name of the function can be found on the same API interface as a seventh query, called `get_recomendation(title)`, where you enter the title of a movie and it returns a list of 5 recommended movies based on that input title.
 (After processing the information and running the model, a .pickle file was printed as [similarity_matrix.pickle](https://drive.google.com/file/d/1gIPsPKwgEdCEO-iqo_XdATjEKX6f9-QS/view?usp=share_link), which is stored on a drive, as it was not possible to load it on GitHub due to its size.)
@@ -96,4 +100,4 @@ To obtain a first global overview of the datasets' structure, functions such as 
 <br/>
 
 ## **Video explanation:**
-[link]
+[link](https://drive.google.com/file/d/1sbA1PaWKPt2X-zWRMo8dXk3dw5YOmT61/view?usp=share_link)
