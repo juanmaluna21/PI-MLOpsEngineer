@@ -98,4 +98,4 @@ Due to the large size of the file generated after processing, in order to execut
 <br/>
 
 ## **Video explanation:**
-[link]()
+[link](https://www.youtube.com/watch?v=3KWKnBZ7eiA)
