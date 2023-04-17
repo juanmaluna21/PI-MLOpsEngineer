@@ -25,7 +25,7 @@ Original platform datasets are saved in a drive in a drive on this [link](https:
 ## **Main files used:**
 
 <p align="left">
-<img src="https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/Screen%20Shot%202023-04-16%20at%2022.49.46.png"  height=300>
+<img src="https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/Screen%20Shot%202023-04-17%20at%2012.27.56.png"  height=300>
 </p>
 
 ## **Data treatment:**
@@ -93,7 +93,7 @@ To obtain a first global overview of the datasets' structure, functions such as 
 [recommendation_system.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recommendation_system.ipynb)
 
 "Cosine Similarity" model was used for the recommendation system. The name of the function can be found on the same API interface as a seventh query, called `get_recomendation(title)`, where you enter the title of a movie and it returns a list of 5 recommended movies based on that input title.
-Due to the large size of the file generated after processing, in order to execute the deployment on Render, the number of records was reduced to 1000, which are saved in a .pickle file called [similarity_matrix.pickle](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/similarity_matrix.pickle). Nevertheless, to show the function's operation, there is a [list of movies]() included in the program.
+Due to the large size of the file generated after processing, in order to execute the deployment on Render, the number of records was reduced to 1000, which are saved in a .pickle file called [similarity_matrix.pickle](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/similarity_matrix.pickle). Nevertheless, to show the function's operation, there is a [list of 10 movies](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/movies.txt) included in the program.
 
 <br/>
 
