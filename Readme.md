@@ -90,14 +90,12 @@ To obtain a first global overview of the datasets' structure, functions such as 
 <br/>
 
 ## **Recommendation system:**
-[recommendation_system(support).ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recommendation_system(support).ipynb)
-
-[recommendation_system](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recomendation_system.py)
+[recommendation_system.ipynb](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/recommendation_system.ipynb)
 
 "Cosine Similarity" model was used for the recommendation system. The name of the function can be found on the same API interface as a seventh query, called `get_recomendation(title)`, where you enter the title of a movie and it returns a list of 5 recommended movies based on that input title.
-(After processing the information and running the model, a .pickle file was printed as [similarity_matrix.pickle](https://drive.google.com/file/d/1gIPsPKwgEdCEO-iqo_XdATjEKX6f9-QS/view?usp=share_link), which is stored on a drive, as it was not possible to load it on GitHub due to its size.)
+Due to the large size of the file generated after processing, in order to execute the deployment on Render, the number of records was reduced to 1000, which are saved in a .pickle file called [similarity_matrix.pickle](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/similarity_matrix.pickle). Nevertheless, to show the function's operation, there is a [list of movies]() included in the program.
 
 <br/>
 
 ## **Video explanation:**
-[link](https://youtu.be/WRVAk1QK5JU)
+[link]()
