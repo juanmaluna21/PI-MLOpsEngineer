@@ -100,4 +100,4 @@ To obtain a first global overview of the datasets' structure, functions such as 
 <br/>
 
 ## **Video explanation:**
-[link](https://drive.google.com/file/d/1sbA1PaWKPt2X-zWRMo8dXk3dw5YOmT61/view?usp=share_link)
+[link](https://youtu.be/WRVAk1QK5JU)
