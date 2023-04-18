@@ -90,6 +90,8 @@ To obtain a first global overview of the datasets' structure, functions such as 
 On these links you can find the reports for platform and ratings:
 
 [platform_eda](file:///Users/juanluna/Desktop/PI-MLOpsEngineer/src/platform_eda.html)
+
+
 [ratings_eda](file:///Users/juanluna/Desktop/PI-MLOpsEngineer/src/ratings_eda.html)
 
 <br/>
