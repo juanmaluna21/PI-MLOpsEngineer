@@ -87,7 +87,7 @@ The deployment was carried out through Render at the following link, with the pr
 
 To obtain a first global overview of the datasets' structure, functions such as `.shape, .dtype, .describe, .info, and .head` were used. In order to observe a little more in detail, a `box plot` diagram was graphed, where several outliers were found in the "duration_int" column. Finally, to complement this analysis, the `ProfileReport` tool from `pandas_profiling` library was used, where it was possible to observe that there are no duplicate values. The platform "Hulu" contains the most null values, some columns such as "cast" do not contain any values. Additionally, it was observed that the movie with the lowest score was "filth" with a score of 0.5.
 
-On these links you can find the reports for platform and ratings:
+Due to Github does not deploy Pandas profiling reports, on these links you can find them for platform and ratings made with Profile Reports:
 
 [platform_eda](https://github.com/juanmaluna21/PI-MLOpsEngineer/blob/main/src/platform_eda.html)
 
